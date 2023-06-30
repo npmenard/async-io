@@ -77,7 +77,7 @@ impl Reactor {
                 sources: Mutex::new(Slab::new()),
                 events: Mutex::new(Vec::new()),
                 timers: Mutex::new(BTreeMap::new()),
-                timer_ops: ConcurrentQueue::bounded(1000),
+                timer_ops: ConcurrentQueue::bounded(25),
             }
         })
     }
