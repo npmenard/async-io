@@ -258,7 +258,8 @@ impl Reactor {
                     timers.insert((when, id), waker);
                 }
                 TimerOp::Remove(when, id) => {
-                    timers.remove(&(when, id));
+                    let r = timers.remove(&(when, id));
+                    drop(r);
                 }
             });
     }
