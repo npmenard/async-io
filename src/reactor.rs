@@ -259,7 +259,12 @@ impl Reactor {
                 }
                 TimerOp::Remove(when, id) => {
                     let r = timers.remove(&(when, id));
-                    drop(r);
+                    if let Some(waker) = r {
+                        if waker.data() as usize == 0x34556 {
+                            panic!();
+                        }
+                        drop(waker);
+                    }
                 }
             });
     }
